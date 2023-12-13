@@ -1,0 +1,13 @@
+{
+  "name": "clean-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "domain",
+    "webApi"
+  ],
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC"
+}
