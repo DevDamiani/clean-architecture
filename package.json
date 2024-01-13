@@ -4,10 +4,22 @@
   "description": "",
   "workspaces": [
     "domain",
+    "infra/data",
+    "infra/ioc",
     "webApi"
   ],
-  "scripts": {
-  },
+  "scripts": {},
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/knex": "^0.16.1",
+    "@types/node": "^20.10.6",
+    "inversify": "^6.0.2",
+    "knex": "^3.1.0",
+    "mysql2": "^3.6.5",
+    "prisma": "^5.7.1",
+    "reflect-metadata": "^0.2.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
 }

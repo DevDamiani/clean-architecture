@@ -8,11 +8,11 @@ export interface ProductParams {
     price: number,
     stock: number,
     image: string,
-    categoryId: number,
-    category: Category
+    categoryId?: number,
+    category?: Category
 }
 
-export class Product {
+export default class Product {
 
     private _id: number = 0;
     private _name: string = "";

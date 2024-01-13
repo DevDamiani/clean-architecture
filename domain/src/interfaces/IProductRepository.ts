@@ -1,14 +1,14 @@
-import { Product } from "../entities/Product"
+import Product  from "../entities/Product"
 
 export default interface IProductCategoryRepository {
 
 
-    GetCategories(): Array<Product>
-    GetByID(id: number): Product
+    GetCategories(): Promise<Product[]>
+    GetByID(id: number): Promise<Product>
 
-    Create(product: Product): Product
-    Update(product: Product): Product
-    Remove(product: Product): Product
+    Create(product: Product): Promise<Product>
+    Update(product: Product): Promise<Product>
+    Remove(product: Product): Promise<Product>
 
 
 }

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: lab-clean/mysql
+    build:
+      dockerfile: Dockerfile
+      context: .docker/mysql
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    environment:
+      - MYSQL_DATABASE=default
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=lab
+      - MYSQL_PASSWORD=admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/opt/oracle/oradata
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9001:8080
+
+volumes:
+  liferay_document_library:
+  liferay_hypersonic:
+  mysql_data:
