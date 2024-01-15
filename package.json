@@ -6,6 +6,7 @@
     "domain",
     "infra/data",
     "infra/ioc",
+    "application",
     "webApi"
   ],
   "scripts": {},

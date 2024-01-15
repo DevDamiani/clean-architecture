@@ -1,5 +1,5 @@
 import { DomainExceptionValidation } from "../validation/DomainExceptionValidation";
-import { Product } from "./Product";
+import Product  from "./Product";
 
 export interface CategoryParams {
     id?: number,

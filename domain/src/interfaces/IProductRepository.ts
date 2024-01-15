@@ -1,9 +1,8 @@
 import Product  from "../entities/Product"
 
-export default interface IProductCategoryRepository {
+export default interface IProductRepository {        
 
-
-    GetCategories(): Promise<Product[]>
+    GetProduct(): Promise<Product[]>
     GetByID(id: number): Promise<Product>
 
     Create(product: Product): Promise<Product>
