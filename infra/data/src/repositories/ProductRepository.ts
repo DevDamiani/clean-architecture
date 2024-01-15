@@ -25,14 +25,33 @@ export default class ProductRepository implements IProductRepository {
             .where({ id: id })
             .first()
     }
-    Create(product: Product): Promise<Product> {
-        return this.context(this.TABLE_NAME).insert(product, 'id');
+    async Create(product: Product): Promise<number> {
+        try {
+            const result = await this.context(this.TABLE_NAME)
+                .insert({
+                    name: product.name,
+                    description: product.description,
+                    price: product.price,
+                    stock: product.stock,
+                    image: product.image
+                }).returning("id")
+
+
+            return result[0]
+
+
+        }
+        catch (err) {
+            console.log({ err });
+
+            throw new Error(`ProductRepository.Create: ${err}`)
+        }
     }
-    Update(product: Product): Promise<Product> {
-        return this.context(this.TABLE_NAME).where({ id: product.id }).update(product);
+    async Update(product: Product): Promise<Product> {
+        return await this.context(this.TABLE_NAME).where({ id: product.id }).update(product);
     }
-    Remove(product: Product): Promise<Product> {
-        return this.context(this.TABLE_NAME).where({ id: product.id }).del();
+    async Remove(product: Product): Promise<Product> {
+        return await this.context(this.TABLE_NAME).where({ id: product.id }).del();
     }
 
 

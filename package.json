@@ -9,7 +9,8 @@
     "application",
     "webApi"
   ],
-  "scripts": {},
+  "scripts": {
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

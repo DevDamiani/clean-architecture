@@ -1,7 +1,7 @@
 const TYPES = {
     ApplicationDbContext: Symbol.for("ApplicationDbContext"),
     IProductRepository: Symbol.for("IProductRepository"),
-    ThrowableWeapon: Symbol.for("ThrowableWeapon")
+    IProductService: Symbol.for("IProductService")
 };
 
 export { TYPES };

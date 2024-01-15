@@ -1,47 +1,85 @@
 import { Router, type Request, type Response } from 'express';
-
-import type IProductRepository from "domain/src/interfaces/IProductRepository"
-import { container } from "infra-ioc/inversify.config"
+import { container } from "infra-ioc/inversify.config";
 import { TYPES } from 'infra-ioc/types';
+import type IProductService from 'application/src/interfaces/IProductService';
+import ProductDTO from 'application/src/dtos/ProductDTO';
+
 
 
 export default class ProductsRoutes {
 
-  private clients: any[] = []
-  private productRepository: IProductRepository
+  private productService: IProductService;
 
   constructor() {
 
-    this.productRepository = container.get<IProductRepository>(TYPES.IProductRepository);
+    this.productService = container.get<IProductService>(TYPES.IProductService);
 
   }
 
   getRoutes(): Router {
 
-    const router = Router()
+    const router = Router();
+
     router.get('/', (req: Request, res: Response) => {
-      this.productRepository.GetProduct()
+      this.productService.GetProducts()
         .then(products => {
           res.json(products);
         })
         .catch(err => {
-          res.json({err})
-        })
+          res.json({ err });
+        });
 
     });
 
-    router.get('/:id', (req: Request, res: Response) => {
-      const client = this.clients.find((t) => t.id === parseInt(req.params.id));
+    router.get('/:id', async (req: Request, res: Response) => {
 
-      if (!client) {
-        res.status(404).send('Task not found');
-      } else {
-        res.json(client);
+      try {
+        const product = await this.productService.GetByID(parseInt(req.params.id));
+        if (!product) {
+          res.status(404).send('Product not found');
+        } else {
+          res.json(product);
+        }
+      } catch (error) {
+        res.status(500).json(error);
       }
+
+
+    });
+
+    router.post('/', async (req: Request, res: Response) => {
+
+      try {
+
+        const { name, description, price, stock } = req.query;
+
+        console.log({
+          name,
+          description,
+          price,
+          stock
+        });
+
+        if (!name || !description || !price || !stock) {
+          
+          return res.status(400).json({ error: 'Both name and description are required in the query parameters' });
+        }
+
+        const product = new ProductDTO(0, name as string, description as string, parseFloat(price as string), parseInt(stock as string))
+
+        const produductCreated = await this.productService.Create(product);
+
+        res.status(201).json(produductCreated);
+
+      } catch (error) {
+        res.status(500).json(error);
+      }
+
+
     });
 
 
-    return router
+    return router;
   }
 
 

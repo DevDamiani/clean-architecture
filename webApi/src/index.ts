@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import 'reflect-metadata'
 import express, { type Request, type Response, Router } from 'express';
 import ProductsRoutes from './routes/ProductsRoutes';
 

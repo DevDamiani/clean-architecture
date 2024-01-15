@@ -19,8 +19,6 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
 
-
-
     // ioc
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

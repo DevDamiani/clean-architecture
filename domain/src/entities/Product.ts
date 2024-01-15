@@ -14,72 +14,15 @@ export interface ProductParams {
 
 export default class Product {
 
-    private _id: number = 0;
-    private _name: string = "";
-    private _description: string = "";
-    private _price: number = 0;
-    private _stock: number = 0;
-    private _image: string = "";
+    public id: number = 0;
+    public name: string = "";
+    public description: string = "";
+    public price: number = 0;
+    public stock: number = 0;
+    public image: string = "";
 
-    private _categoryId: number = 0;
-    private _category: Category | null = null;
-
-
-    public get id(): number {
-        return this._id;
-    }
-    private set id(value: number) {
-        this._id = value;
-    }
-
-    public get name(): string {
-        return this._name;
-    }
-    private set name(value: string) {
-        this._name = value;
-    }
-    
-    public get description(): string {
-        return this._description;
-    }
-    private set description(value: string) {
-        this._description = value;
-    }
-
-    public get price(): number {
-        return this._price;
-    }
-    private set price(value: number) {
-        this._price = value;
-    }
-
-    public get stock(): number {
-        return this._stock;
-    }
-    private set stock(value: number) {
-        this._stock = value;
-    }
-
-    public get image(): string {
-        return this._image;
-    }
-    private set image(value: string) {
-        this._image = value;
-    }
-
-    public get categoryId(): number {
-        return this._categoryId;
-    }
-    private set categoryId(value: number) {
-        this._categoryId = value;
-    }
-
-    public get category(): Category | null {
-        return this._category;
-    }
-    private set category(value: Category) {
-        this._category = value;
-    }
+    public categoryId: number = 0;
+    public category: Category | null = null;
 
     constructor(args: ProductParams){
 
